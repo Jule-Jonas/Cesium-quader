@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cesium 3D Quader</title>
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.91/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.91/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <style>
+        html, body, #cesiumContainer {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="cesiumContainer"></div>
+    <script>
+        // Initialisiere den Cesium Viewer in dem HTML-Element mit der ID 'cesiumContainer'.
+        var viewer = new Cesium.Viewer('cesiumContainer');
+
+        // Definiere den 3D-Quader.
+        var blueBox = viewer.entities.add({
+            name: 'Blue box',
+            position: Cesium.Cartesian3.fromDegrees(-114.0, 40.0, 300000.0), // Position des Quaders (Länge, Breite, Höhe)
+            box: {
+                dimensions: new Cesium.Cartesian3(400000.0, 300000.0, 500000.0), // Dimensionen des Quaders (Länge, Breite, Höhe)
+                material: Cesium.Color.BLUE.withAlpha(0.5), // Material des Quaders (Farbe und Transparenz)
+                outline: true, // Soll der Quader umrandet sein?
+                outlineColor: Cesium.Color.BLACK // Farbe der Umrandung
+            }
+        });
+
+        // Zoomen auf den Quader, damit er in der Ansicht sichtbar ist
+        viewer.zoomTo(viewer.entities);
+    </script>
+</body>
+</html>
